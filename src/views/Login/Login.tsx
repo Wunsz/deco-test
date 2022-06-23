@@ -1,16 +1,20 @@
-import React, { FC } from 'react';
+import React, { FC, useCallback } from 'react';
 import { Form, Formik } from 'formik';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
 import TextInput from 'components/TextInput/TextInput';
 import Button from 'components/Button/Button';
+import { RootState, useAppDispatch } from 'redux/store';
+import { login } from 'redux/slices/users';
+import Credentials from 'types/credentials';
 
 import useSchema from './hooks/useSchema';
 import useInitialValues from './hooks/useInitialValues';
 
 import SplashImage from './components/SplashImage/SplashImage';
-import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const Root = styled.main`
   display: grid;
@@ -44,7 +48,11 @@ const LinkContainer = styled.div`
 
 const StyledButton = styled(Button)`
   padding: 15px 40px;
-`
+`;
+
+const ErrorText = styled.p`
+  color: #af0000;
+`;
 
 export interface LoginProps {}
 
@@ -53,10 +61,20 @@ const Login: FC<LoginProps> = () => {
   const schema = useSchema();
   const initialValues = useInitialValues();
 
+  const dispatch = useAppDispatch();
+  const loginError = useSelector((state: RootState) => state.user.loginError);
+
+  const handleLogin = useCallback(
+    (values: Credentials) => {
+      dispatch(login(values));
+    },
+    [dispatch],
+  );
+
   return (
     <Root>
       <SplashImage maxDisplayWidth={600} />
-      <Formik initialValues={initialValues} validationSchema={schema} onSubmit={console.log}>
+      <Formik<Credentials> initialValues={initialValues} validationSchema={schema} onSubmit={handleLogin}>
         <StyledForm>
           <h1>{t('login.title')}</h1>
           <TextInput name="email" label={t('login.email')} type="email" />
@@ -66,6 +84,7 @@ const Login: FC<LoginProps> = () => {
             <Link to="/forgot-password">{t('login.forgotPassword')}</Link>
           </LinkContainer>
           <StyledButton type="submit">{t('login.login')}</StyledButton>
+          {loginError && <ErrorText>{t(loginError)}</ErrorText>}
         </StyledForm>
       </Formik>
     </Root>

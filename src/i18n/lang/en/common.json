@@ -40,5 +40,8 @@
   "home": {
     "welcome": "Welcome {{name}}!",
     "logout": "Log out!"
+  },
+  "errors": {
+    "invalidCredentials": "Invalid email or password!"
   }
 }
