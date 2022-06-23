@@ -19,6 +19,7 @@ const Error = styled.span`
 
 const Input = styled.input`
   padding: 12px;
+  background: transparent;
   border: 1px solid #d0d0d0;
   border-radius: 4px;
   position: relative;
@@ -37,6 +38,7 @@ const Input = styled.input`
       color: #b4b4b4;
       transform: translate(-8px, -22px);
       background: white;
+      z-index: 2;
     }
   }
 `;
@@ -46,9 +48,9 @@ const Label = styled.label`
   position: absolute;
   top: 10px;
   left: 10px;
-  z-index: 2;
+  z-index: -1;
   padding: 0 2px;
-  transition: transform 50ms ease-in-out, background 25ms 25ms ease-in-out;
+  transition: transform 50ms ease-in-out, background 25ms 25ms ease-in-out, z-index 40ms 10ms ease-in-out;
 `;
 
 export interface TextInputProps {
