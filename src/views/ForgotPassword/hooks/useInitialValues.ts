@@ -5,8 +5,6 @@ const useInitialValues = () =>
     () => ({
       name: '',
       email: '',
-      password: '',
-      repeatPassword: '',
     }),
     [],
   );

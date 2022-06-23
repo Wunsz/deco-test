@@ -1,6 +1,11 @@
-import React, { FC } from 'react';
+import React, { FC, useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Form, Formik } from 'formik';
+import { useSelector } from 'react-redux';
+
+import { RootState, useAppDispatch } from 'redux/store';
+import { remindPassword, resetRemindedUser } from 'redux/slices/users';
+import RemindPasswordCredentials from 'types/remindPasswordCredentials';
 
 import useSchema from './hooks/useSchema';
 import useInitialValues from './hooks/useInitialValues';
@@ -33,17 +38,36 @@ const StyledForm = styled(Form)`
 const ForgotPassword: FC<ForgotPasswordProps> = () => {
   const schema = useSchema();
   const initialValues = useInitialValues();
+  const dispatch = useAppDispatch();
+  const [recoveryAttempted, setRecoveryAttempted] = useState(false);
 
-  const recoveryAttempted = true;
-  const recoverySuccess = true;
-  const recoveredPassword = 'test';
+  const recoveredPassword = useSelector((state: RootState) => state.user.remindedUser?.password);
+
+  useEffect(
+    () => () => {
+      dispatch(resetRemindedUser());
+    },
+    [dispatch],
+  );
+
+  const handleRemindPassword = useCallback(
+    (values: RemindPasswordCredentials) => {
+      dispatch(remindPassword(values));
+      setRecoveryAttempted(true);
+    },
+    [dispatch],
+  );
 
   return (
     <Root>
-      <Formik initialValues={initialValues} validationSchema={schema} onSubmit={console.log}>
+      <Formik<RemindPasswordCredentials>
+        initialValues={initialValues}
+        validationSchema={schema}
+        onSubmit={handleRemindPassword}
+      >
         <StyledForm>
-          {recoverySuccess ? <Success recoveredPassword={recoveredPassword} /> : <FormContent />}
-          {!recoverySuccess && recoveryAttempted && <Error />}
+          {recoveredPassword ? <Success /> : <FormContent />}
+          {!recoveredPassword && recoveryAttempted && <Error />}
         </StyledForm>
       </Formik>
     </Root>

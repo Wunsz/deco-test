@@ -1,12 +1,13 @@
-import React, { FC } from 'react';
+import React, { FC, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import Button from 'components/Button/Button';
 import styled from 'styled-components';
+import { useSelector } from 'react-redux';
+import { RootState, useAppDispatch } from '../../../../redux/store';
+import { login } from '../../../../redux/slices/users';
 
-export interface SuccessProps {
-  recoveredPassword: string;
-}
+export interface SuccessProps {}
 
 const Root = styled.div`
   display: flex;
@@ -26,14 +27,24 @@ const Password = styled.p`
   font-family: monospace;
 `;
 
-const Success: FC<SuccessProps> = ({ recoveredPassword }) => {
+const Success: FC<SuccessProps> = () => {
   const { t } = useTranslation();
+  const user = useSelector((state: RootState) => state.user.remindedUser);
+  const dispatch = useAppDispatch();
+
+  const handleLogin = useCallback(() => {
+    if (user !== undefined) {
+      dispatch(login(user));
+    }
+  }, [dispatch, user]);
 
   return (
     <Root>
       <span>{t('forgot.success')}</span>
-      <Password>{recoveredPassword}</Password>
-      <Button type="button">{t('forgot.login')}</Button>
+      <Password>{user?.password}</Password>
+      <Button type="button" onClick={handleLogin}>
+        {t('forgot.login')}
+      </Button>
     </Root>
   );
 };

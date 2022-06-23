@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import usersReducer from './slices/users';
 
+// @TODO Probably we should add some kind of persistence gate and store state in AsyncState.
 const store = configureStore({
   reducer: {
     user: usersReducer,
