@@ -1,12 +1,29 @@
 {
   "validation": {
     "invalidEmail": "Invalid email",
-    "required": "Field is required"
+    "required": "Field is required",
+    "alphanumeric": "Value must contain only letter and numbers",
+    "nameTooShort": "Name must have at least 3 characters",
+    "passwordTooShort": "Password must have at least 8 characters",
+    "passwordTooLong": "Password must have up to 30 characters",
+    "passwordMissingUpperCase": "Password must have at least one upper case letter",
+    "passwordMissingLowerCase": "Password must have at least one lower case letter",
+    "passwordMissingNumeric": "Password must have at least one digit ",
+    "passwordMissingSpecialCharacter": "Password must have at least one special character: !@#$%^&*_-+|",
+    "passwordsDoNotMatch": "Passwords do not match"
   },
   "login": {
     "title": "Deco Login",
     "email": "Email",
     "password": "Password",
     "login": "Log in"
+  },
+  "register": {
+    "title": "Deco Register",
+    "name": "Name",
+    "email": "Email",
+    "password": "Password",
+    "repeatPassword": "Repeat password",
+    "register": "Register"
   }
 }

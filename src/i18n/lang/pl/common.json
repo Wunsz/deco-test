@@ -1,12 +1,29 @@
 {
   "validation": {
     "invalidEmail": "Niepoprawny email",
-    "required": "Pole jest wymagane"
+    "required": "Pole jest wymagane",
+    "alphanumeric": "Dozwolone są tylko litery i cyfry",
+    "nameTooShort": "Imię musi mieć conajmniej 3 znaki",
+    "passwordTooShort": "Hasło musi mieć conajmniej 8 znaków",
+    "passwordTooLong": "Hasło musi mieć conajwyżej 30 znaków",
+    "passwordMissingUpperCase": "Hasło musi mieć conajmniej jedną wielką literę",
+    "passwordMissingLowerCase": "Hasło musi mieć conajmniej jedną małą literę",
+    "passwordMissingNumeric": "Hasło musi mieć conajmniej jedną cyfrę",
+    "passwordMissingSpecialCharacter": "Hasło musi mieć conajmniej jeden znak specjalny: !@#$%^&*_-+|",
+    "passwordsDoNotMatch": "Hasła się nie zgadzają"
   },
   "login": {
     "title": "Logowanie Deco",
     "email": "Email",
     "password": "Hasło",
     "login": "Zaloguj się"
+  },
+  "register": {
+    "title": "Rejestracja Deco",
+    "name": "Imię",
+    "email": "Email",
+    "password": "Hasło",
+    "repeatPassword": "Powtórz hasło",
+    "register": "Zarejestruj się!"
   }
 }

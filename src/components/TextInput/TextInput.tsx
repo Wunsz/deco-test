@@ -21,7 +21,6 @@ const Input = styled.input`
   padding: 12px;
   border: 1px solid #d0d0d0;
   border-radius: 4px;
-  width: 100%;
   position: relative;
 
   &:focus,
