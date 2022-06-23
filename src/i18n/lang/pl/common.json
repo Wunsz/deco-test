@@ -1,0 +1,12 @@
+{
+  "validation": {
+    "invalidEmail": "Niepoprawny email",
+    "required": "Pole jest wymagane"
+  },
+  "login": {
+    "title": "Logowanie Deco",
+    "email": "Email",
+    "password": "Hasło",
+    "login": "Zaloguj się"
+  }
+}
