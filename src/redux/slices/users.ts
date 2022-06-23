@@ -30,7 +30,6 @@ export const usersSlice = createSlice<UserSlice, UserReducers>({
       };
     },
     login: (state, action) => {
-      console.log(action);
       const user = state.registeredUsers[action.payload.email];
 
       if (user !== undefined && user.password === action.payload.password) {

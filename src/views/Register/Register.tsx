@@ -1,10 +1,14 @@
-import React, { FC } from 'react';
+import React, { FC, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { Form, Formik } from 'formik';
 
 import TextInput from 'components/TextInput/TextInput';
 import Button from 'components/Button/Button';
+import { useAppDispatch } from 'redux/store';
+import { registerUser } from 'redux/slices/users';
+import { useNavigate } from 'react-router-dom';
+import User from 'types/user';
 
 import useSchema from './hooks/useSchema';
 import useInitialValues from './hooks/useInitialValues';
@@ -15,7 +19,7 @@ const Root = styled.main`
   display: flex;
   width: 100%;
   height: 100vh;
-  
+
   align-items: center;
   justify-content: center;
 `;
@@ -30,14 +34,29 @@ const StyledForm = styled(Form)`
   width: clamp(200px, 50%, 500px);
 `;
 
+interface ResetForm extends User {
+  repeatPassword: string;
+}
+
 const Register: FC<RegisterProps> = () => {
   const { t } = useTranslation();
   const schema = useSchema();
   const initialValues = useInitialValues();
 
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const handleRegister = useCallback(
+    ({ repeatPassword, ...user }: ResetForm) => {
+      dispatch(registerUser(user));
+      navigate('/login');
+    },
+    [dispatch],
+  );
+
   return (
     <Root>
-      <Formik initialValues={initialValues} validationSchema={schema} onSubmit={console.log}>
+      <Formik<ResetForm> initialValues={initialValues} validationSchema={schema} onSubmit={handleRegister}>
         <StyledForm>
           <h1>{t('register.title')}</h1>
           <TextInput name="name" label={t('register.name')} type="text" />

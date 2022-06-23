@@ -1,8 +1,11 @@
-import React, { FC } from 'react';
+import React, { FC, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
+import { useSelector } from 'react-redux';
 
 import Button from 'components/Button/Button';
+import { RootState, useAppDispatch } from 'redux/store';
+import { logout } from 'redux/slices/users';
 
 export interface HomeProps {}
 
@@ -27,13 +30,20 @@ const Card = styled.div`
 
 const Home: FC<HomeProps> = () => {
   const { t } = useTranslation();
-  const name = 'Mike';
+  const name = useSelector((state: RootState) => state.user.currentUser?.name);
+  const dispatch = useAppDispatch();
+
+  const handleLogout = useCallback(() => {
+    dispatch(logout());
+  }, [dispatch]);
 
   return (
     <Root>
       <Card>
         <h1>{t('home.welcome', { name })}</h1>
-        <Button type="button">{t('home.logout')}</Button>
+        <Button type="button" onClick={handleLogout}>
+          {t('home.logout')}
+        </Button>
       </Card>
     </Root>
   );
