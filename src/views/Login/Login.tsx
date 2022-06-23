@@ -10,6 +10,7 @@ import useSchema from './hooks/useSchema';
 import useInitialValues from './hooks/useInitialValues';
 
 import SplashImage from './components/SplashImage/SplashImage';
+import { Link } from 'react-router-dom';
 
 const Root = styled.main`
   display: grid;
@@ -33,6 +34,18 @@ const StyledForm = styled(Form)`
   box-shadow: #00000030 0 0 20px;
 `;
 
+const LinkContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  width: 100%;
+`;
+
+const StyledButton = styled(Button)`
+  padding: 15px 40px;
+`
+
 export interface LoginProps {}
 
 const Login: FC<LoginProps> = () => {
@@ -48,7 +61,11 @@ const Login: FC<LoginProps> = () => {
           <h1>{t('login.title')}</h1>
           <TextInput name="email" label={t('login.email')} type="email" />
           <TextInput name="password" label={t('login.password')} type="password" />
-          <Button type="submit">{t('login.login')}</Button>
+          <LinkContainer>
+            <Link to="/register">{t('login.register')}</Link>
+            <Link to="/forgot-password">{t('login.forgotPassword')}</Link>
+          </LinkContainer>
+          <StyledButton type="submit">{t('login.login')}</StyledButton>
         </StyledForm>
       </Formik>
     </Root>

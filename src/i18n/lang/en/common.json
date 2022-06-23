@@ -16,7 +16,9 @@
     "title": "Deco Login",
     "email": "Email",
     "password": "Password",
-    "login": "Log in"
+    "login": "Log in",
+    "forgotPassword": "Forgot your password?",
+    "register": "Register!"
   },
   "register": {
     "title": "Deco Register",
@@ -25,5 +27,14 @@
     "password": "Password",
     "repeatPassword": "Repeat password",
     "register": "Register"
+  },
+  "forgot": {
+    "title": "Password reminder",
+    "name": "Name",
+    "email": "Email",
+    "remind": "Remind password",
+    "failure": "Sorry! Provided recovery data was not correct!",
+    "success": "Your password is:",
+    "login": "Click here to log in!"
   }
 }

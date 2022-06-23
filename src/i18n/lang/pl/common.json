@@ -16,7 +16,9 @@
     "title": "Logowanie Deco",
     "email": "Email",
     "password": "Hasło",
-    "login": "Zaloguj się"
+    "login": "Zaloguj się",
+    "forgotPassword": "Zapomniałeś hasła?",
+    "register": "Register!"
   },
   "register": {
     "title": "Rejestracja Deco",
@@ -25,5 +27,14 @@
     "password": "Hasło",
     "repeatPassword": "Powtórz hasło",
     "register": "Zarejestruj się!"
+  },
+  "forgot": {
+    "title": "Przypomnienie hasła",
+    "name": "Imię",
+    "email": "Email",
+    "remind": "Przypomnij hasło",
+    "failure": "Wybacz! Podane dane odzyskiwania nie są poprawne!",
+    "success": "Twoje hasło to:",
+    "login": "Kliknij tutaj aby się zalogować!"
   }
 }
