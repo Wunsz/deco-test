@@ -36,5 +36,9 @@
     "failure": "Sorry! Provided recovery data was not correct!",
     "success": "Your password is:",
     "login": "Click here to log in!"
+  },
+  "home": {
+    "welcome": "Welcome {{name}}!",
+    "logout": "Log out!"
   }
 }

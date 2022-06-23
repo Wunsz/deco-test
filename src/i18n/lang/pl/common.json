@@ -36,5 +36,9 @@
     "failure": "Wybacz! Podane dane odzyskiwania nie są poprawne!",
     "success": "Twoje hasło to:",
     "login": "Kliknij tutaj aby się zalogować!"
+  },
+  "home": {
+    "welcome": "Witaj {{name}}!",
+    "logout": "Wyloguj się!"
   }
 }
